@@ -8,7 +8,14 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    // View cart summary
+    // Show cart page with items
+    public function showCartPage(Request $request)
+    {
+        $cartItems = Cart::with('product')->where('user_id', $request->user()->id)->get();
+        return view('user.cart', compact('cartItems'));
+    }
+
+    // View cart summary (API)
     public function index(Request $request)
     {
         $cartItems = Cart::with('product')->where('user_id', $request->user()->id)->get();
@@ -42,6 +49,23 @@ class CartController extends Controller
         return response()->json($cartItem, 201);
     }
 
+    // Update cart item quantity
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'quantity' => 'required|integer|min:1',
+        ]);
+
+        $cartItem = Cart::where('user_id', $request->user()->id)
+            ->where('id', $id)
+            ->firstOrFail();
+
+        $cartItem->quantity = $request->quantity;
+        $cartItem->save();
+
+        return redirect()->back()->with('success', 'Cart updated successfully.');
+    }
+
     // Remove product from cart
     public function remove(Request $request, $id)
     {
@@ -51,6 +75,6 @@ class CartController extends Controller
 
         $cartItem->delete();
 
-        return response()->json(['message' => 'Item removed from cart']);
+        return redirect()->back()->with('success', 'Item removed from cart');
     }
 }

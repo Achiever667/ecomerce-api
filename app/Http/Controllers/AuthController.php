@@ -51,6 +51,24 @@ class AuthController extends Controller
         ]);
     }
 
+    // Web login with redirection
+    public function loginWeb(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (auth()->attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended('/user/dashboard');
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
+    }
+
     // User profile
     public function profile(Request $request)
     {
@@ -89,5 +107,31 @@ class AuthController extends Controller
         $request->user()->tokens()->delete();
 
         return response()->json(['message' => 'Logged out successfully']);
+    }
+
+    // Admin login with redirection
+    public function adminLoginWeb(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (auth()->attempt($credentials)) {
+            $request->session()->regenerate();
+
+            if (auth()->user()->role === 'admin') {
+                return redirect()->intended('/admin/dashboard');
+            }
+
+            auth()->logout();
+            return back()->withErrors([
+                'email' => 'Unauthorized access.',
+            ])->onlyInput('email');
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     }
 }
