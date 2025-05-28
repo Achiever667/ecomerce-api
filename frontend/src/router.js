@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Register from '../components/Register.vue'
-import Login from '../components/Login.vue'
-import Profile from '../components/Profile.vue'
-import ProductList from '../components/ProductList.vue'
-import ProductCreateEdit from '../components/ProductCreateEdit.vue'
-import Cart from '../components/Cart.vue'
-import OrderHistory from '../components/OrderHistory.vue'
-import CMSManagement from '../components/CMSManagement.vue'
+import Register from './components/Register.vue'
+import Login from './components/Login.vue'
+import Profile from './components/Profile.vue'
+import ProductList from './components/ProductList.vue'
+import ProductCreateEdit from './components/ProductCreateEdit.vue'
+import Cart from './components/Cart.vue'
+import OrderHistory from './components/OrderHistory.vue'
+import CMSManagement from './components/CMSManagement.vue'
 
 const routes = [
   {

@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     login() {
-      axios.post('/api/login', this.form)
+      axios.post('/login', this.form)
         .then(response => {
           const token = response.data.access_token;
           localStorage.setItem('auth_token', token);

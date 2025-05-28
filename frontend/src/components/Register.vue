@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     register() {
-      axios.post('/api/register', this.form)
+      axios.post('/register', this.form)
         .then(() => {
           this.$router.push({ name: 'Login' });
         })
