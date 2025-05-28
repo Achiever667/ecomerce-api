@@ -34,7 +34,7 @@ export default {
     },
     fetchProducts() {
       this.loading = true;
-      axios.get('/api/products')
+      axios.get('/products')
         .then(response => {
           this.products = response.data;
         })
@@ -53,7 +53,7 @@ export default {
     },
     deleteProduct(id) {
       if (confirm('Are you sure you want to delete this product?')) {
-        axios.delete(`/api/products/${id}`)
+        axios.delete(`/products/${id}`)
           .then(() => {
             this.fetchProducts();
           })

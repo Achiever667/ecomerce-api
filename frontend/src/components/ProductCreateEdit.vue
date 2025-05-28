@@ -53,7 +53,7 @@ export default {
     fetchProduct() {
       if (this.$route.params.id !== 'new') {
         this.isNew = false;
-        axios.get(`/api/products/${this.$route.params.id}`)
+        axios.get(`/products/${this.$route.params.id}`)
           .then(response => {
             this.product = response.data;
             if (this.product.image) {
@@ -81,7 +81,7 @@ export default {
       }
 
       if (this.isNew) {
-        axios.post('/api/products', formData)
+        axios.post('/products', formData)
           .then(() => {
             this.$router.push({ name: 'ProductList' });
           })
@@ -89,7 +89,7 @@ export default {
             console.error('Failed to create product:', error);
           });
       } else {
-        axios.post(`/api/products/${this.$route.params.id}`, formData, {
+        axios.post(`/products/${this.$route.params.id}`, formData, {
           headers: { 'X-HTTP-Method-Override': 'PUT' },
         })
           .then(() => {

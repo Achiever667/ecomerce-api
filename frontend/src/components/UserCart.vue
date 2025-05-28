@@ -33,7 +33,7 @@ export default {
       this.error = '';
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('/api/cart', {
+        const response = await axios.get('/cart', {
           headers: { Authorization: `Bearer ${token}` },
         });
         this.cartItems = response.data;
@@ -45,7 +45,7 @@ export default {
       this.error = '';
       try {
         const token = localStorage.getItem('token');
-        await axios.delete(`/api/cart/${itemId}`, {
+        await axios.delete(`/cart/${itemId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         await this.fetchCart();
@@ -58,7 +58,7 @@ export default {
       this.success = '';
       try {
         const token = localStorage.getItem('token');
-        await axios.post('/api/checkout', {}, {
+        await axios.post('/checkout', {}, {
           headers: { Authorization: `Bearer ${token}` },
         });
         this.success = 'Order placed successfully!';

@@ -24,7 +24,7 @@ export default {
   methods: {
     fetchProfile() {
       this.loading = true;
-      axios.get('/api/profile')
+      axios.get('/profile')
         .then(response => {
           this.profile = response.data;
         })
@@ -36,7 +36,7 @@ export default {
         });
     },
     logout() {
-      axios.post('/api/logout')
+      axios.post('/logout')
         .then(() => {
           localStorage.removeItem('auth_token');
           delete axios.defaults.headers.common['Authorization'];

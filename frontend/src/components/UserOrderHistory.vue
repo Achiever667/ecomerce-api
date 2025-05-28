@@ -29,7 +29,7 @@ export default {
       this.error = '';
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('/api/orders', {
+        const response = await axios.get('/orders', {
           headers: { Authorization: `Bearer ${token}` },
         });
         this.orders = response.data;

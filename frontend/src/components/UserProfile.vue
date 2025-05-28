@@ -37,7 +37,7 @@ export default {
       this.error = '';
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('/api/profile', {
+        const response = await axios.get('/profile', {
           headers: { Authorization: `Bearer ${token}` },
         });
         this.name = response.data.name;
@@ -51,7 +51,7 @@ export default {
       this.message = '';
       try {
         const token = localStorage.getItem('token');
-        await axios.put('/api/profile', {
+        await axios.put('/profile', {
           name: this.name,
           email: this.email,
         }, {

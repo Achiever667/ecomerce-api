@@ -31,7 +31,7 @@ export default {
   methods: {
     fetchCart() {
       this.loading = true;
-      axios.get('/api/cart')
+      axios.get('/cart')
         .then(response => {
           this.cartItems = response.data;
         })
@@ -43,7 +43,7 @@ export default {
         });
     },
     removeItem(id) {
-      axios.delete(`/api/cart/${id}`)
+      axios.delete(`/cart/${id}`)
         .then(() => {
           this.fetchCart();
         })

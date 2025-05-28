@@ -55,7 +55,7 @@ export default {
       this.error = '';
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`/api/products/${this.$route.params.id}`, {
+        const response = await axios.get(`/products/${this.$route.params.id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         this.product = response.data;
@@ -68,11 +68,11 @@ export default {
       try {
         const token = localStorage.getItem('token');
         if (this.isEdit) {
-          await axios.put(`/api/products/${this.$route.params.id}`, this.product, {
+          await axios.put(`/products/${this.$route.params.id}`, this.product, {
             headers: { Authorization: `Bearer ${token}` },
           });
         } else {
-          await axios.post('/api/products', this.product, {
+          await axios.post('/products', this.product, {
             headers: { Authorization: `Bearer ${token}` },
           });
         }

@@ -33,7 +33,7 @@ export default {
   methods: {
     fetchOrders() {
       this.loading = true;
-      axios.get('/api/orders')
+      axios.get('/orders')
         .then(response => {
           this.orders = response.data;
         })

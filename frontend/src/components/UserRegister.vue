@@ -44,7 +44,7 @@ export default {
       this.error = '';
       this.success = '';
       try {
-        const response = await axios.post('/api/register', {
+        const response = await axios.post('/register', {
           name: this.name,
           email: this.email,
           password: this.password,

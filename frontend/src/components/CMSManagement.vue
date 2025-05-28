@@ -31,7 +31,7 @@ export default {
   methods: {
     fetchCMSPages() {
       this.loading = true;
-      axios.get('/api/cms-pages')
+      axios.get('/cms-pages')
         .then(response => {
           this.cmsPages = response.data;
         })
@@ -49,7 +49,7 @@ export default {
       this.$router.push({ name: 'CMSCreateEdit', params: { id } });
     },
     archivePage(id) {
-      axios.post(`/api/cms-pages/${id}/archive`)
+      axios.post(`/cms-pages/${id}/archive`)
         .then(() => {
           this.fetchCMSPages();
         })
@@ -58,7 +58,7 @@ export default {
         });
     },
     unarchivePage(id) {
-      axios.post(`/api/cms-pages/${id}/archive`)
+      axios.post(`/cms-pages/${id}/archive`)
         .then(() => {
           this.fetchCMSPages();
         })
